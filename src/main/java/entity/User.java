@@ -1,18 +1,23 @@
-package dto.request;
+package entity;
 
-public class RequestUserDto {
+public class User {
     private String email;
     private String first_name;
     private String last_name;
     private String contact;
     private String password;
 
-    public RequestUserDto(String email, String first_name, String last_name, String contact, String password) {
+
+
+    private boolean activeState;
+
+    public User(String email, String first_name, String last_name, String contact, String password, boolean activeState) {
         this.email = email;
         this.first_name = first_name;
         this.last_name = last_name;
         this.contact = contact;
         this.password = password;
+        this.activeState = activeState;
     }
 
     public String getEmail() {
@@ -53,6 +58,14 @@ public class RequestUserDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isActiveState() {
+        return activeState;
+    }
+
+    public void setActiveState(boolean activeState) {
+        this.activeState = activeState;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package dto.response;
+package dto;
 
 public class UserDto {
     private String email;
@@ -6,6 +6,9 @@ public class UserDto {
     private String last_name;
     private String contact;
     private String password;
+
+
+
     private boolean activeState;
 
     public UserDto(String email, String first_name, String last_name, String contact, String password, boolean activeState) {
@@ -25,19 +28,19 @@ public class UserDto {
         this.email = email;
     }
 
-    public String getFname() {
+    public String getFirst_name() {
         return first_name;
     }
 
-    public void setFname(String first_name) {
+    public void setFirst_name(String first_name) {
         this.first_name = first_name;
     }
 
-    public String getLname() {
+    public String getLast_name() {
         return last_name;
     }
 
-    public void setLname(String last_name) {
+    public void setLast_name(String last_name) {
         this.last_name = last_name;
     }
 
@@ -56,7 +59,13 @@ public class UserDto {
     public void setPassword(String password) {
         this.password = password;
     }
+    public boolean isActiveState() {
+        return activeState;
+    }
 
+    public void setActiveState(boolean activeState) {
+        this.activeState = activeState;
+    }
     @Override
     public String toString() {
         return "UserDto{" +

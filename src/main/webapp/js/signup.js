@@ -2,13 +2,12 @@ function navigateToLogin(){
     window.location.replace('/login.jsp')
 }
 function signup(){
-    pw1 = $('#pw1').val();
-    pw2 = $('#pw2').val();
+
 
     let user ={
         email :$('#email').val() ,
-        fname : $('#f_name').val(),
-        lname : $('#l_name').val(),
+        first_name : $('#f_name').val(),
+        last_name : $('#l_name').val(),
         contact :$('#contact').val() ,
         password :$('#pw1').val() ,
     }
@@ -18,7 +17,7 @@ function signup(){
         contentType:'application/json',
         type:'POST',
         async:true,
-        data:user,
+        data:JSON.stringify(user),
         success:(response)=>{
             console.log(response);
         },
