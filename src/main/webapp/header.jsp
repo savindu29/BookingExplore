@@ -13,7 +13,7 @@
 <body>
 <div class="outer">
     <div class="left">
-        <h2 onclick="backToHome()">HotelsExpo.com</h2>
+        <h2 onclick="backToHome()">BookingExplore.com</h2>
     </div>
     <div class="right">
         <button onclick="navigateToDashboard()">Manage Business</button>
