@@ -20,6 +20,11 @@ function signup(){
         data:JSON.stringify(user),
         success:(response)=>{
             console.log(response);
+            if(response.code===201){
+                alert(response.message);
+            }else{
+                alert("try again : "+response.message)
+            }
         },
         error :(err)=>{
             console.log(err)
