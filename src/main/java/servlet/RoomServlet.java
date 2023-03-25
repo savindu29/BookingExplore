@@ -2,23 +2,68 @@ package servlet;
 
 import com.google.gson.Gson;
 import dao.CrudUtil;
+import dto.Hotel;
+import dto.RequestImageDto;
 import dto.UserDto;
 import dto.request.RequestLoginDto;
 import dto.request.RequestRoomDto;
 import dto.request.RequestUserDto;
+import dto.response.DataResponse;
 import dto.response.StandardResponse;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import util.IdGenerator;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 @WebServlet("/room")
 public class RoomServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getParameter("type").equals("list")){
+            String jsoObj = "";
+            try{
+                String location = "%"+(request.getParameter("location"))+"%";
+                ResultSet set = CrudUtil.execute("SELECT * FROM Hotel WHERE destination LIKE ?",location);
 
+
+
+                ArrayList<Hotel> hotelsList= new ArrayList<>();
+                while (set.next()){
+                    Hotel h= new Hotel(
+                            set.getString(1),
+                            set.getString(2),
+                            set.getInt(3),
+                            null,
+                            set.getBoolean(5),
+                            null,
+                            set.getString(7),
+                            set.getString(8)
+                    );
+                    hotelsList.add(h);
+                }
+                DataResponse resp = new DataResponse(
+                        hotelsList.size(),
+                        hotelsList
+                );
+
+                jsoObj = new Gson().toJson(
+                        new StandardResponse(200, "data!", resp)
+                );
+                response.getWriter().write(jsoObj);
+
+            }catch (Exception e){
+                jsoObj = new Gson().toJson(
+                        new StandardResponse(500, e.getMessage(), e)
+                );
+                response.getWriter().write(jsoObj);
+            }
+
+        }
     }
 
     @Override
@@ -51,22 +96,10 @@ public class RoomServlet extends HttpServlet {
                 response.getWriter().write(jsonObj);
             }
         }else{
-           /* resp.setContentType("application/json");
-            String jsoObj="";
-            RequestLoginDto d =
-                    new Gson().fromJson(req.getReader(), RequestLoginDto.class);
-            try{
-
-                jsoObj=new Gson().toJson(
-                        new StandardResponse(200,"Successful",userBo.login(d.getEmail(),d.getPassword()))
-                );
-                resp.getWriter().println(jsoObj);
-            }catch (Exception e){
-                jsoObj=new Gson().toJson(
-                        new StandardResponse(500,e.getMessage(),e)
-                );
-                resp.getWriter().write(jsoObj);
-            }*/
+            RequestImageDto d = new Gson().fromJson(request.getReader(), RequestImageDto.class);
+            response.setContentType("application/json");
+            FileInputStream fis = new FileInputStream(d.getImage());
+            System.out.println(d);
         }
     }
 }

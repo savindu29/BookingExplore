@@ -75,10 +75,14 @@
                 <div class="accordion-body">
                     <div class="container">
                         <div class="row">
+                            <div class="col-12 mb-3">
+                                <label for="room">Room</label>
+                                <input type="text" class="form-control" id="room">
+                            </div>
                             <div class="col-12">
                                 <input type="file" id="file" class="form-control">
                                 <p style="text-align: right">
-                                    <button type="button" class="btn btn-danger mt-2 ">Upload Image</button>
+                                    <button type="button" onclick="saveImage()" class="btn btn-danger mt-2 ">Upload Image</button>
                                 </p>
                             </div>
                             <div class="col-12">
@@ -100,8 +104,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="js/dashboard.js"></script>
 <script type="application/javascript">
-
+    let imageData;
     function setImage(data){
+        imageData = data.files[0];
         if(data.files || data.files[0]) {
             let reader = new FileReader();
             reader.onload = (e)=>{
@@ -111,6 +116,7 @@
             reader.readAsDataURL(data.files[0]);
         }
     }
+
     $('#file').change(function (){
         setImage(this)
     })
@@ -145,7 +151,21 @@
             }
         })
     }
-
+    function saveImage(){
+        let data = new FormData();
+        data.append( 'image',imageData );
+        console.log(data);
+        console.log(imageData);
+        $.ajax({
+            url: 'http://localhost:7000/room?type=image',
+            data: data,
+            processData: false,
+            type: 'POST',
+            success: function ( data ) {
+                alert( data );
+            }
+        });
+    }
 </script>
 </body>
 </html>

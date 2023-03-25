@@ -27,7 +27,7 @@
         <div class="reservation-inner">
             <div class="row">
                 <div class="col-3 box">
-                    <input type="search" class="search-outer" placeholder="Search here">
+                    <input name="location" type="search" class="search-outer" placeholder="Search here">
                 </div>
                 <div class="col-3 box date-outer">
                     <div class="date-from date-box">
@@ -39,14 +39,14 @@
                 </div>
                 <div class="col-4 box passengers-outer">
                     <div class="special-input-outer" >
-                        <select name="" id="adults" >
+                        <select name="adults" id="adults" >
                             <option value="1">1 Adult</option>
                             <option value="2">2 Adults</option>
                             <option value="3">3 Adults</option>
                         </select>
                     </div>
                     <div class="special-input-outer">
-                        <select name="" id="children">
+                        <select name="child" id="children">
                             <option value="1">0 child</option>
                             <option value="1">1 child</option>
                             <option value="2">2 Children</option>
@@ -54,7 +54,7 @@
                         </select>
                     </div>
                     <div class="special-input-outer">
-                        <select name="" id="rooms">
+                        <select name="room" id="rooms">
                             <option value="1">1 Room</option>
                             <option value="2">2 Room</option>
                             <option value="3">3 Room</option>
