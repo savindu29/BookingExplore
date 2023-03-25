@@ -73,7 +73,19 @@
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="file" id="file" class="form-control">
+                                <p style="text-align: right">
+                                    <button type="button" class="btn btn-danger mt-2 ">Upload Image</button>
+                                </p>
+                            </div>
+                            <div class="col-12">
+                                <img src="" alt="" id="selected-img"  style="width: 300px"  class="img-thumbnail">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,6 +100,21 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="js/dashboard.js"></script>
 <script type="application/javascript">
+
+    function setImage(data){
+        if(data.files || data.files[0]) {
+            let reader = new FileReader();
+            reader.onload = (e)=>{
+                $('#selected-img').attr('src',e.target.result);
+
+            }
+            reader.readAsDataURL(data.files[0]);
+        }
+    }
+    $('#file').change(function (){
+        setImage(this)
+    })
+
     function saveRoom(){
         let room ={
             type :$('#type').val(),
