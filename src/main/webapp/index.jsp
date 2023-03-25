@@ -19,8 +19,8 @@
 <%--Header--%>
 
 <%--Contrnt--%>
-<div class="content-outer" style='background: url("https://thumbs.dreamstime.com/b/explorer-young-woman-backpack-walking-summer-mountains-rainy-weather-explorer-girl-walking-mountains-134705499.jpg") center; background-repeat: no-repeat; background-size: cover;'>
-<h1 style="color: white">Find the best deals and book with confidence!</h1>
+<div class="content-outer" style='background: url("https://www.bnesim.com/wp-content/uploads/2018/07/o-BACKPACKING-facebook.jpg") center; background-repeat: no-repeat; background-size: cover;'>
+<h1 style="color: black">Find the best deals and book with confidence!</h1>
 
     <form action="/result-page.jsp" style="width: 100%">
     <div class="reservation-making-outer">

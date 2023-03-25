@@ -77,6 +77,12 @@
         integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
 <script src="js/login.js"></script>
 <script type="application/javascript">
+    function isLogged(){
+        if(localStorage.getItem('token')){
+            window.location.replace('/dashboard.jsp')
+        }
+    }
+    isLogged();
     function login(){
 
 
@@ -95,6 +101,8 @@
                 console.log(response);
                 if(response.code===200){
                     alert(response.message);
+                    localStorage.setItem('token',response.data.token)
+                    window.location.replace('/dashboard.jsp')
                 }else{
                     alert("try again : "+response.message)
                 }

@@ -92,6 +92,65 @@
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
         integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
 <script src="js/signup.js"></script>
+<script type="application/javascript">
+    function navigateToLogin(){
+        window.location.replace('/login.jsp')
+    }
+    function isLogged(){
+        if(localStorage.getItem('token')){
+            window.location.replace('/dashboard.jsp');
+        }
+    }
+    isLogged();
+    function signup(){
+
+
+        let user ={
+            email :$('#email').val() ,
+            first_name : $('#f_name').val(),
+            last_name : $('#l_name').val(),
+            contact :$('#contact').val() ,
+            password :$('#pw1').val() ,
+        }
+        $.ajax({
+            url:'http://localhost:7000/user?type=signup',
+            dataType:'json',
+            contentType:'application/json',
+            type:'POST',
+            async:true,
+            data:JSON.stringify(user),
+            success:(response)=>{
+                console.log(response);
+                if(response.code===201){
+                    alert(response.message);
+                    window.location.replace('/dashboard.jsp')
+                }else{
+                    alert("try again : "+response.message)
+                }
+            },
+            error :(err)=>{
+                console.log(err)
+            }
+        })
+
+        /* let data = 'first_name='+user.fname+'&last_name='+user.lname+'&contact='+user.contact+
+             '&password='+user.password+'&email='+user.email
+         $.ajax({
+             url:'http://localhost:8000/user?'+data,
+             dataType:'json',
+             contentType:'application/json',
+             type:'POST',
+             async:true,
+             data:{},
+             success:(response)=>{
+                 console.log(response);
+             },
+             error :(err)=>{
+                console.log(err)
+             }
+         })*/
+    }
+</script>
 
 
 </body>

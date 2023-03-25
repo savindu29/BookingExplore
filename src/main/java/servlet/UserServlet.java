@@ -7,6 +7,7 @@ import dto.UserDto;
 import dto.request.RequestLoginDto;
 import dto.request.RequestUserDto;
 import dto.response.StandardResponse;
+import io.jsonwebtoken.Jwts;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -56,13 +57,12 @@ public class UserServlet extends HttpServlet {
             RequestLoginDto d =
                     new Gson().fromJson(req.getReader(), RequestLoginDto.class);
             try{
+
                 jsoObj=new Gson().toJson(
-                        new StandardResponse(200,"Successful",
-                                userBo.login(d.getEmail(),d.getPassword()))
+                        new StandardResponse(200,"Successful",userBo.login(d.getEmail(),d.getPassword()))
                 );
                 resp.getWriter().println(jsoObj);
             }catch (Exception e){
-                e.printStackTrace();
                 jsoObj=new Gson().toJson(
                         new StandardResponse(500,e.getMessage(),e)
                 );
