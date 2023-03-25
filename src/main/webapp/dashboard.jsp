@@ -97,27 +97,28 @@
             cost :$('#cost').val(),
 
         }
-    }
-    $.ajax({
-        url:'http://localhost:7000/room?type=room',
-        dataType:'json',
-        contentType:'application/json',
-        type:'POST',
-        async:true,
-        data:JSON.stringify(room),
-        success:(response)=>{
-            console.log(response);
-            if(response.code===201){
-                alert(response.message);
+        $.ajax({
+            url:'http://localhost:7000/room?type=room',
+            dataType:'json',
+            contentType:'application/json',
+            type:'POST',
+            async:true,
+            data:JSON.stringify(room),
+            success:(response)=>{
+                console.log(response);
+                if(response.code===201){
+                    alert(response.message);
 
-            }else{
-                alert("try again : "+response.message)
+                }else{
+                    alert("try again : "+response.message)
+                }
+            },
+            error :(err)=>{
+                console.log(err)
             }
-        },
-        error :(err)=>{
-            console.log(err)
-        }
-    })
+        })
+    }
+
 </script>
 </body>
 </html>
