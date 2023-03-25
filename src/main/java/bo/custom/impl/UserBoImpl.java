@@ -18,4 +18,9 @@ public class UserBoImpl implements UserBo {
                         dto.getContact(),dto.getPassword(),dto.isActiveState())
         );
     }
+
+    @Override
+    public String login(String email, String password) throws SQLException, ClassNotFoundException {
+        return userDao.login(email,password);
+    }
 }

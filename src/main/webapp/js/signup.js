@@ -12,7 +12,7 @@ function signup(){
         password :$('#pw1').val() ,
     }
     $.ajax({
-        url:'http://localhost:7000/user',
+        url:'http://localhost:7000/user?type=signup',
         dataType:'json',
         contentType:'application/json',
         type:'POST',

@@ -4,6 +4,7 @@ import dao.CrudUtil;
 import dao.custom.UserDao;
 import entity.User;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -34,5 +35,16 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> getAll() {
         return null;
+    }
+
+    @Override
+    public String login(String email, String password) throws SQLException, ClassNotFoundException {
+       // System.out.println(email + " | "+ password);
+        ResultSet set = CrudUtil.execute("SELECT * from user where email =? and password =?",email,password);
+        if(set.next()){
+            return set.getString("email");
+        }else{
+            throw  new ClassNotFoundException();
+        }
     }
 }

@@ -42,14 +42,14 @@
                <p>Login To Continue</p>
                <form>
                    <div class="mb-3">
-                       <label for="exampleInputEmail1" class="form-label">Email address</label>
-                       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                       <label for="email" class="form-label">Email address</label>
+                       <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                    </div>
 
                    <div class="mb-3">
-                       <label for="exampleInputPassword1" class="form-label">Password</label>
-                       <input type="password" class="form-control" id="exampleInputPassword1">
+                       <label for="password" class="form-label">Password</label>
+                       <input type="password" class="form-control" id="password">
                    </div>
                    <div class="mb-3 form-check">
                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -58,7 +58,7 @@
                     <div class="forget">
                    <a  href="">Forget password?</a>
                     </div>
-                   <input type="button" value="Login" class="btn btn-warning">
+                   <input type="button" onclick="login()" value="Login" class="btn btn-warning">
                    <hr>
                    <input type="button" onclick="navigateToSignUp()" value="Create An Account" class="btn btn-dark">
                </form>
@@ -76,5 +76,36 @@
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
         integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
 <script src="js/login.js"></script>
+<script type="application/javascript">
+    function login(){
+
+
+        let user ={
+            email :$('#email').val() ,
+            password :$('#password').val() ,
+        }
+        $.ajax({
+            url:'http://localhost:7000/user?type=login',
+            dataType:'json',
+            contentType:'application/json',
+            type:'POST',
+            async:true,
+            data:JSON.stringify(user),
+            success:(response)=>{
+                console.log(response);
+                if(response.code===200){
+                    alert(response.message);
+                }else{
+                    alert("try again : "+response.message)
+                }
+            },
+            error :(err)=>{
+                console.log(err)
+            }
+        })
+
+
+    }
+</script>
 </body>
 </html>
