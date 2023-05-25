@@ -3,11 +3,11 @@
 BookingExplore is a hotel room booking system created using JSP Servlet technology. It utilizes MySQL as the database and incorporates technologies like Bootstrap, AJAX, and jQuery. The project follows a layered architecture and implements the Singleton design pattern. It provides a dashboard for administrators and uses JWT authentication for secure access.
 
 
-##Introduction
+## Introduction
 
 BookingExplore is a system for booking hotel rooms. It makes it easy for customers to find and reserve rooms. The system uses a user-friendly interface and offers various features for both hotel administrators and customers.
 
-#Technologies Used
+## Technologies Used
 - JSP (JavaServer Pages): Technology for creating dynamic web pages.
 - Servlets: Java classes that handle requests and responses in the web application.
 - MySQL: Database management system for storing and managing data.
@@ -16,7 +16,7 @@ BookingExplore is a system for booking hotel rooms. It makes it easy for custome
 - jQuery: JavaScript library for simplifying DOM manipulation and event handling.
 - JWT (JSON Web Tokens): Secure method for transmitting authentication data as JSON objects.
 
-#Architecture
+## Architecture
 The project follows a layered architecture design, which separates different parts of the system for easier development and maintenance:
 
 - Presentation Layer: Handles the user interface, including web pages, CSS, and client-side scripts.
