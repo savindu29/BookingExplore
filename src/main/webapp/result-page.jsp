@@ -42,6 +42,7 @@
         }
         .details {
             height: 150px;
+            margin-bottom: 30px;
         }
 
         h4 {
@@ -57,9 +58,17 @@
         }
 
         .result-button {
+
             flex: 1;
             display: flex;
             justify-content: flex-end;
+
+        }
+        .book-button{
+            border: 4px solid white;
+        }
+        .bold-text{
+            font-weight: bold;
         }
 
 
@@ -78,23 +87,18 @@
 %>
 
 
-
-
-
-
-
-
-
 <%--content--%>
 <div class="main-outer">
     <div class="row" style="margin: 0">
         <div class="left-outer context col-3">
+            <form action="/result-page.jsp">
             <div class="search-wrapper">
                 <div class="row" style="margin: 0">
                     <div class="col-12 input-outer">
                         <input type="search"
                                placeholder="Search here"
-                               class="search-outer">
+                               class="search-outer"
+                        name="location">
                     </div>
                     <div class="col-12 input-outer  date-outer">
                         <div class="date-from date-box">
@@ -137,6 +141,7 @@
 
 
             </div>
+            </form>
             <div class="filter-wrapper">
                 <h5>Fun things to do</h5>
                 <ul>
@@ -158,9 +163,10 @@
         </div>
         <div class=" context col-9 ">
             <p class="alert alert-dark">
-                <span id="data-count"></span> Properties Found
+                <span id="data-count"></span> Properties Found in  <span id="search-location"></span>
             </p>
             <div class="result-outer" id="data-set">
+                <img src="" alt="">
 
             </div>
         </div>
@@ -178,8 +184,9 @@
 <script type="application/javascript">
     let destination = '<%=request.getParameter("location")%>';
 
+
     $.ajax({
-        url: 'http://localhost:7000/room?type=list&location='+destination,
+        url: 'http://localhost:7000/hotel?type=list&location='+destination,
         dataType: 'json',
         contentType: 'application/json',
         type: 'GET',
@@ -189,7 +196,8 @@
 
 
             console.log(response.data.hotels);
-            $('#data-count').text(response.data.dataCount+'');
+            $('#data-count').text(response.data.dataCount);
+            $('#search-location').text(destination+'');
             console.log(response.data.dataCount);
             for(let d of response.data.hotels){
                 console.log(response.data.hotels);
@@ -197,23 +205,31 @@
                     `<div class="result-inner">
                     <div class="result-inner-left">
                         <img class="img-thumbnail"
-                        src="https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzl8fGhvdGVsfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+                        src="https://static.leonardo-hotels.com/image/leonardohotelbucharestcitycenter_room_comfortdouble2_2022_4000x2600_7e18f254bc75491965d36cc312e8111f_1200x780_mobile_3.jpeg"
                         alt="">
                     </div>
                     <div class="result-inner-right">
                         <div class="details ">
-                            <h4>`+d.name+`</h4>
+                            <h4>`+d.hotelName+`</h4>
+
                             <p class="desc mt-2 mb-2">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam cupiditate expedita
-                                illum, itaque maxime praesentium voluptates! Adipisci asperiores autem commodi ducimus
-                                id odio omnis, quam temporibus tenetur totam vero voluptatum.
+                               Welcome to our hotel located in the heart of <span class='bold-text'>${d.location}</span>.
+                               With a prime address at <span class='bold-text'>${d.address}</span>, our hotel offers convenience
+                               and tranquility. Whether for business or leisure, indulge in an exceptional experience.
+                                Discover vibrant surroundings and explore attractions like <span class='bold-text'>
+                                ${d.destination}</span>, or unwind in our state-of-the-art facilities. Our <span class='bold-text'>${d.type}
+                                </span> hotel is renowned for its exceptional service, elegant accommodations, and unforgettable experiences.
+                                Experience the perfect blend of luxury and comfort at <span class='bold-text'>${d.hotelName}</span>.
+
+
                             </p>
+
                             <p class="alert alert-danger">
                                 Deals are available
                             </p>
                         </div>
                         <div class="result-button">
-                            <button class="btn-sm btn btn-warning mt-2" onClick="book();">
+                            <button class="btn-sm btn btn-warning mt-2 book-button" onClick="book();">
                                 Book Now
                             </button>
                         </div>

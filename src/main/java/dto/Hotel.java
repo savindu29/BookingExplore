@@ -2,20 +2,21 @@ package dto;
 
 import lombok.*;
 
-import java.util.ArrayList;
+import java.sql.Blob;
+
 @Getter
 @Setter
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Hotel {
     private String id;
-    private String name;
-    private int star;
-    private ArrayList address;
-    private boolean activeState;
-    private ArrayList location;
+    private String hotelName;
+    private int starCount;
+    private String address;
+    private String activeState;
+    private String location;
     private String destination;
     private String type;
-
+    private Blob img;
 }
