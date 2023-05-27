@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Russo+One&display=swap');
+
+$logo-font : 'Russo One', sans-serif;
+$main-font : 'Roboto', sans-serif;
+$logo-font-size : 25px;
+$general-font-sizes :(regular:13px,medium:16px,large:20px);
+$general-font-weight :(regular:400,medium:500,large:bold);
+
+@function  fontSize($size){
+  @return map-get($general-font-sizes,$size)
+}
+
+@function  fontWeight($weight){
+  @return map-get($general-font-weight,$weight)
+}
